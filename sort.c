@@ -66,6 +66,8 @@ static int compare_date_sent (const void *a, const void *b)
   HEADER **pb = (HEADER **) b;
   int result = (*pa)->date_sent - (*pb)->date_sent;
   AUXSORT(result,a,b);
+  if ((*pa)->thread->parent && (*pb)->thread->parent)
+	  return -(SORTCODE (result));
   return (SORTCODE (result));
 }
 
